@@ -5,7 +5,7 @@ class Solution {
     private var result = 0
     fun romanToInt(s: String): Int {
         while (i < s.length) {
-            sum(s[i - 1].toInt(), s[i].code)
+            sum(s[i - 1].code, s[i].code)
         }
         if (i == s.length)
             sum(s[i - 1].code, 0)
