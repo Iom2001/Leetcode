@@ -5,7 +5,7 @@ class Solution {
     private var result = 0
     fun romanToInt(s: String): Int {
         while (i < s.length) {
-            sum(s[i - 1].code, s[i].code)
+            sum(s[i - 1].toInt(), s[i].code)
         }
         if (i == s.length)
             sum(s[i - 1].code, 0)
@@ -72,9 +72,46 @@ class Solution {
         }
         i++
     }
+
+    fun romanToInt2(s: String): Int {
+        var start = s.length - 1
+        while (start >= 0) {
+            println(start)
+            sum2(s[start].code)
+            println(result)
+            start--
+        }
+        return result
+    }
+
+    private fun sum2(code: Int) {
+        when (code) {
+            77 -> {
+                result += 1000
+            }
+            68 -> {
+                result += 500
+            }
+            67 -> {
+                result += if (result < 300) 100 else -100
+            }
+            76 -> {
+                result += 50
+            }
+            88 -> {
+                result += if (result < 30) 10 else -10
+            }
+            86 -> {
+                result += 5
+            }
+            73 -> {
+                result += if (result < 3) 1 else -1
+            }
+        }
+    }
 }
 
 fun main() {
     val solution = Solution()
-    println(solution.romanToInt("MCMXCIV"))
+    println(solution.romanToInt2("MCMXCIV"))
 }
