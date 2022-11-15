@@ -1,3 +1,5 @@
+package kotlin_leed
+
 import kotlin.math.pow
 
 fun main() {

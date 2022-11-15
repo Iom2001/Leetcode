@@ -1,4 +1,4 @@
-package best_time_buy_sell
+package kotlin_leed.best_time_buy_sell
 
 class Solution {
 

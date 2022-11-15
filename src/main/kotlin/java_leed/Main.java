@@ -1,3 +1,5 @@
+package java_leed;
+
 class Main {
     public static void main(String[] args) {
     }
@@ -7,12 +9,12 @@ class Main {
         int min = 0;
         int profit = 0;
 
-        for(int i = 0; i < prices.length; i++){
-            if(prices[i] < max){
+        for (int i = 0; i < prices.length; i++) {
+            if (prices[i] < max) {
                 max = prices[i];
             }
             min = prices[i] - max;
-            if(profit < min){
+            if (profit < min) {
                 profit = min;
             }
         }
