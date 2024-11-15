@@ -1,11 +1,6 @@
 package kotlin_leed
 
 fun main() {
-    println(palindromeNumber(0))
-    println(palindromeNumber(111))
-    println(palindromeNumber(121))
-    println(palindromeNumber(-121))
-    println(palindromeNumber(10))
 }
 
 fun palindromeNumber(x: Int): Boolean {
@@ -21,4 +16,22 @@ fun palindromeNumber(x: Int): Boolean {
     }
 
     return original == reversedHalf || original == reversedHalf / 10
+}
+
+fun runningSum(nums: IntArray): IntArray {
+    val array = IntArray(nums.size)
+    for (i in nums.indices) {
+        var sum = nums[i]
+        for (j in 0 until i) {
+            sum+=nums[j]
+        }
+        array[i] = sum
+    }
+    return array
+}
+fun runningSum2(nums: IntArray): IntArray {
+    for (i in 1 until nums.size) {
+        nums[i] = nums[i -1] + nums[i]
+    }
+    return nums
 }
