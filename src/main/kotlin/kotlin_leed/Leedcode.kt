@@ -69,3 +69,17 @@ fun fizzBuzz(n: Int): List<String> {
     }
     return answer
 }
+
+fun numberOfSteps(num: Int): Int {
+    var second = num
+    var step = 0
+    while (second > 0) {
+        if (second % 2 == 0) {
+            second /= 2
+        } else {
+            second -= 1
+        }
+        step++
+    }
+    return step
+}
