@@ -35,3 +35,37 @@ fun runningSum2(nums: IntArray): IntArray {
     }
     return nums
 }
+
+fun maximumWealth(accounts: Array<IntArray>): Int {
+    var max = 0
+    for (i in accounts.indices) {
+        var value = 0
+        for (j in accounts[i].indices) {
+            value+=accounts[i][j]
+        }
+        if (value > max) {
+            max = value
+        }
+    }
+    return max
+}
+
+fun fizzBuzz(n: Int): List<String> {
+    val answer = ArrayList<String>(n)
+    var i = 1
+    while (i <= n) {
+        val fizz = i % 3 == 0
+        val buzz = i % 5 == 0
+        if (fizz && buzz) {
+            answer.add("FizzBuzz")
+        } else if (fizz) {
+            answer.add("Fizz")
+        } else if (buzz) {
+            answer.add("Buzz")
+        } else {
+            answer.add("$i")
+        }
+        i++
+    }
+    return answer
+}
