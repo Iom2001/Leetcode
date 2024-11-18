@@ -23,15 +23,16 @@ fun runningSum(nums: IntArray): IntArray {
     for (i in nums.indices) {
         var sum = nums[i]
         for (j in 0 until i) {
-            sum+=nums[j]
+            sum += nums[j]
         }
         array[i] = sum
     }
     return array
 }
+
 fun runningSum2(nums: IntArray): IntArray {
     for (i in 1 until nums.size) {
-        nums[i] = nums[i -1] + nums[i]
+        nums[i] = nums[i - 1] + nums[i]
     }
     return nums
 }
@@ -41,7 +42,7 @@ fun maximumWealth(accounts: Array<IntArray>): Int {
     for (i in accounts.indices) {
         var value = 0
         for (j in accounts[i].indices) {
-            value+=accounts[i][j]
+            value += accounts[i][j]
         }
         if (value > max) {
             max = value
@@ -82,4 +83,24 @@ fun numberOfSteps(num: Int): Int {
         step++
     }
     return step
+}
+
+class ListNode(var `val`: Int) {
+    var next: ListNode? = null
+}
+
+fun middleNode(head: ListNode?): ListNode? {
+    var middle = head
+    var count = 1
+    while (middle?.next != null) {
+        middle = middle.next
+        count++
+    }
+    count /= 2
+    middle = head
+    while (count > 0) {
+        middle = middle?.next
+        count--
+    }
+    return middle
 }
