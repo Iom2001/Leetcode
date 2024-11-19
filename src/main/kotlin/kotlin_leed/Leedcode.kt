@@ -104,3 +104,20 @@ fun middleNode(head: ListNode?): ListNode? {
     }
     return middle
 }
+
+fun canConstruct(ransomNote: String, magazine: String): Boolean {
+    var maga = magazine
+    ransomNote.forEach { sign ->
+        var isContain = false
+        for (j in maga.indices) {
+            val mSign = maga[j]
+            if (sign == mSign) {
+                maga = magazine.substring(0, j) + maga.substring(j + 1)
+                isContain = true
+                break
+            }
+        }
+        if (!isContain) return false
+    }
+    return true
+}
