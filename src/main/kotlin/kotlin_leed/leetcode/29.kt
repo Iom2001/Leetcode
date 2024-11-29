@@ -6,22 +6,36 @@ fun main() {
     println(divide(2147483647, -1))
 }
 fun divide(dividend: Int, divisor: Int): Int {
-    var mDividend = dividend.toLong()
-    var mDivider = divisor.toLong()
-    mDividend = abs(mDividend)
-    mDivider = abs(mDivider)
-    var count = 0L
-    while (mDividend >= mDivider) {
-        mDividend -= mDivider
-        count++
+    // Handle edge case for overflow
+    if (dividend == Int.MIN_VALUE && divisor == -1) {
+        return Int.MAX_VALUE
     }
-    if (dividend < 0 && divisor < 0) {
-        return if (count > Int.MAX_VALUE) Int.MAX_VALUE
-        else count.toInt()
-    } else if (dividend < 0 || divisor < 0) {
-        if (count <= Int.MAX_VALUE) return (-count).toInt()
-        else return Int.MIN_VALUE
+
+    // Determine the sign of the result
+    val negative = (dividend < 0) xor (divisor < 0)
+
+    // Work with absolute values to simplify the calculation
+    var dividendAbs = abs(dividend.toLong())
+    val divisorAbs = abs(divisor.toLong())
+
+    var count = 0
+
+    // Perform subtraction until the dividend is less than the divisor
+    while (dividendAbs >= divisorAbs) {
+        var tempDivisor = divisorAbs
+        var multiple = 1
+
+        // Optimize by doubling the divisor and tracking the multiple
+        while (dividendAbs >= (tempDivisor shl 1)) {
+            tempDivisor = tempDivisor shl 1
+            multiple = multiple shl 1
+        }
+
+        // Subtract the largest multiple of the divisor
+        dividendAbs -= tempDivisor
+        count += multiple
     }
-    return if (count > Int.MAX_VALUE) Int.MAX_VALUE
-    else count.toInt()
+
+    // Apply the sign to the quotient
+    return if (negative) -count else count
 }
